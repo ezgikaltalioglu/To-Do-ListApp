@@ -8,18 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.to_do_listapp.activity.MainActivity
 import com.example.to_do_listapp.databinding.FragmentRegisterBinding
+import com.google.firebase.database.FirebaseDatabase
 
 class FragmentRegister : Fragment() {
-
     private var _binding : FragmentRegisterBinding?= null
     private val binding get()=_binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding= FragmentRegisterBinding.inflate(inflater,container,false)
         binding.apply {
             buttonSave.setOnClickListener{

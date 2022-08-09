@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.to_do_listapp.R
 import com.example.to_do_listapp.databinding.ActivityMainBinding
+import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,8 +25,7 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.findNavController()
         binding.bottomNavigation.setupWithNavController(navController)
 
+
+
     }
-
-
-
 }
