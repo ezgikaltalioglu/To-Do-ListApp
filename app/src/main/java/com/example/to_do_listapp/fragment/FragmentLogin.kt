@@ -27,7 +27,6 @@ class FragmentLogin : Fragment() {
 
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
 
-        var database = FirebaseDatabase.getInstance().reference
 
         binding.buttonLogIn.setOnClickListener {
         }

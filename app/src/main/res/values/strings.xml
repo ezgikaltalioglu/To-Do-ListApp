@@ -2,7 +2,7 @@
     <string name="app_name">To-Do-ListApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="kullanici_adi">Kullanıcı adını giriniz.</string>
+    <string name="kullanici_adi">Kullanıcı adınızı girin.</string>
     <string name="welcome">Hoşgeldiniz</string>
     <string name="Kullanici_bilgisi">Kullanıcı Bilgisi</string>
     <string name="cikis_yap">Çıkış Yap!</string>

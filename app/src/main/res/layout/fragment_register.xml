@@ -45,7 +45,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="128dp"
         android:background="@drawable/button_background"
-        android:text="Girişe Dön"
+        android:text="Giriş"
         android:textSize="18sp"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
