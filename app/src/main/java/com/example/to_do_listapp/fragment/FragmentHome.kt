@@ -26,12 +26,12 @@ class FragmentHome : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
-        val taskList = ArrayList<TaskDataClass>()
-        val task1 = TaskDataClass(R.drawable.ic_note, "task")
-        val task2 = TaskDataClass(R.drawable.ic_note, "task")
-        taskList.add(task1)
-        taskList.add(task2)
-        taskList.add(task2)
+//        val taskList = ArrayList<TaskDataClass>()
+//        val task1 = TaskDataClass(R.drawable.ic_note, "task")
+//        val task2 = TaskDataClass(R.drawable.ic_note, "task")
+//        taskList.add(task1)
+//        taskList.add(task2)
+//        taskList.add(task2)
 
         val adapter = RecyclerAdapter(requireContext(), taskList)
         binding.recyclerView.adapter = adapter

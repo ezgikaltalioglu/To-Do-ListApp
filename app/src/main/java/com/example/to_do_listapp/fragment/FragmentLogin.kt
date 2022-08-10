@@ -30,10 +30,6 @@ class FragmentLogin : Fragment() {
         var database = FirebaseDatabase.getInstance().reference
 
         binding.buttonLogIn.setOnClickListener {
-            var etLoginUserName= binding.etLoginUserName.text.toString()
-            var etLoginPassword= binding.etLoginPassword.text.toString()
-            database.setValue(UserInfo(etLoginUserName,etLoginPassword))
-
         }
 
         binding.apply {
