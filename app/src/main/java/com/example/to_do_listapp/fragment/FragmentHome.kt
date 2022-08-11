@@ -41,6 +41,7 @@ class FragmentHome : Fragment() {
                     val task = TaskDataClass(R.drawable.ic_note, etNewTaskTitle,etNewTaskCategory,etNewTaskDetail,etNewTaskTime)
                     taskList.add(task)
                 }
+                //todo hata
                 val adapter = RecyclerAdapter(requireContext(), taskList)
                 binding.recyclerView.adapter = adapter
             }

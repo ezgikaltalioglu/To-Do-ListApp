@@ -17,5 +17,9 @@
         android:id="@+id/fragmentRegister"
         android:name="com.example.to_do_listapp.fragment.FragmentRegister"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_fragmentRegister_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+    </fragment>
 </navigation>
