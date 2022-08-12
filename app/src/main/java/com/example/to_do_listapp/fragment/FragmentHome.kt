@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.to_do_listapp.R
 import com.example.to_do_listapp.TaskDataClass
 import com.example.to_do_listapp.adapter.RecyclerAdapter
@@ -37,8 +38,14 @@ class FragmentHome : Fragment() {
                     var etNewTaskTitle = i.child("etNewTaskTitle").getValue().toString()
                     var etNewTaskCategory = i.child("etNewTaskCategory").getValue().toString()
                     var etNewTaskDetail = i.child("etNewTaskDetail").getValue().toString()
-                    var etNewTaskTime =  i.child("etNewTaskTime").getValue().toString()
-                    val task = TaskDataClass(R.drawable.ic_note, etNewTaskTitle,etNewTaskCategory,etNewTaskDetail,etNewTaskTime)
+                    var etNewTaskTime = i.child("etNewTaskTime").getValue().toString()
+                    val task = TaskDataClass(
+                        R.drawable.ic_note,
+                        etNewTaskTitle,
+                        etNewTaskCategory,
+                        etNewTaskDetail,
+                        etNewTaskTime
+                    )
                     taskList.add(task)
                 }
                 //todo hata
@@ -71,6 +78,5 @@ class FragmentHome : Fragment() {
             }
         }
     }
-
 
 }
