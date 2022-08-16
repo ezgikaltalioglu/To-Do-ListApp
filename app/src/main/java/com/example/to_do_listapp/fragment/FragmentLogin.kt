@@ -29,22 +29,16 @@ class FragmentLogin : Fragment() {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         auth = FirebaseAuth.getInstance()
 
-        //     var currentUser = auth.currentUser
-        //   if (currentUser != null) {
-        //    startActivity(Intent(requireContext(), FragmentProfile::class.java))
-        // }
-
-
         binding.buttonLogIn.setOnClickListener {
             var loginEmail = binding.etLoginUserEmail.text.toString()
             var loginPassword = binding.etLoginPassword.text.toString()
-//            if (TextUtils.isEmpty(loginEmail)) {
-//                binding.etLoginUserEmail.error = "Lütfen email giriniz."
-//                return@setOnClickListener
-//            } else if(TextUtils.isEmpty(loginPassword)) {
-//                binding.etLoginPassword.error = "Lütfen parola giriniz."
-//                return@setOnClickListener
-//            }
+            if (TextUtils.isEmpty(loginEmail)) {
+               binding.etLoginUserEmail.error = "Lütfen email giriniz."
+                return@setOnClickListener
+            } else if(TextUtils.isEmpty(loginPassword)) {
+                binding.etLoginPassword.error = "Lütfen parola giriniz."
+                return@setOnClickListener
+            }
 
             auth.signInWithEmailAndPassword(loginEmail, loginPassword)
                 .addOnCompleteListener { task ->

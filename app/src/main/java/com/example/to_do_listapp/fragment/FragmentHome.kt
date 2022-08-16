@@ -11,6 +11,7 @@ import com.example.to_do_listapp.R
 import com.example.to_do_listapp.TaskDataClass
 import com.example.to_do_listapp.adapter.RecyclerAdapter
 import com.example.to_do_listapp.databinding.FragmentHomeBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -21,32 +22,35 @@ class FragmentHome : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     var database = FirebaseDatabase.getInstance().reference
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        auth = FirebaseAuth.getInstance()
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         val taskList = ArrayList<TaskDataClass>()
-
         var getData = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (i in snapshot.children) {
-                    var etNewTaskTitle = i.child("etNewTaskTitle").getValue().toString()
-                    var etNewTaskCategory = i.child("etNewTaskCategory").getValue().toString()
-                    var etNewTaskDetail = i.child("etNewTaskDetail").getValue().toString()
-                    var etNewTaskTime = i.child("etNewTaskTime").getValue().toString()
-                    val task = TaskDataClass(
-                        R.drawable.ic_note,
-                        etNewTaskTitle,
-                        etNewTaskCategory,
-                        etNewTaskDetail,
-                        etNewTaskTime
-                    )
-                    taskList.add(task)
+                    if(i.child("user").getValue().toString()==auth.currentUser?.uid.toString()){
+                        var etNewTaskTitle = i.child("etNewTaskTitle").getValue().toString()
+                        var etNewTaskCategory = i.child("etNewTaskCategory").getValue().toString()
+                        var etNewTaskDetail = i.child("etNewTaskDetail").getValue().toString()
+                        var etNewTaskTime = i.child("etNewTaskTime").getValue().toString()
+                        val task = TaskDataClass(
+                            R.drawable.ic_note,
+                            etNewTaskTitle,
+                            etNewTaskCategory,
+                            etNewTaskDetail,
+                            etNewTaskTime
+                        )
+                        taskList.add(task)
+                    }
                 }
                 //todo hata
                 val adapter = RecyclerAdapter(requireContext(), taskList)
@@ -69,7 +73,6 @@ class FragmentHome : Fragment() {
                 R.id.addItem -> {
                     Toast.makeText(requireContext(), "Clicked", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.actionHomeFragment_to_fragmentAdd)
-
                     true
                 }
                 else -> {

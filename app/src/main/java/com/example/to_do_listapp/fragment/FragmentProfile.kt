@@ -29,7 +29,6 @@ class FragmentProfile : Fragment() {
         println(currentUser?.email)
         binding.tvUserInfo2.text="Email: "+currentUser?.email.toString()
 
-
         binding.buttonLogout.setOnClickListener{
             auth.signOut()
             startActivity(Intent(requireContext(),FragmentLogin::class.java))
@@ -40,8 +39,6 @@ class FragmentProfile : Fragment() {
 
         }
         return binding.root
-
-
     }
 
     override fun onDestroyView() {

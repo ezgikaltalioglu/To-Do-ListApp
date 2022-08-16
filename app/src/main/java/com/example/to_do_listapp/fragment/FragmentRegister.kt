@@ -43,9 +43,6 @@ class FragmentRegister : Fragment() {
                 }.addOnFailureListener { exception ->
                     Toast.makeText(requireContext(),exception.localizedMessage,Toast.LENGTH_LONG).show()
                 }
-
-                //database.setValue(UserInfo(etSaveUserName,etSavePassword))
-                //database.child(etSaveUserName.toString()).setValue(UserInfo(etSaveUserName,etSavePassword))
             }
 
             binding.apply {
