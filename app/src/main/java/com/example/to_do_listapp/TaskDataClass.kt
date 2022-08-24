@@ -1,5 +1,7 @@
 package com.example.to_do_listapp
 
-import android.media.Image
-
-data class TaskDataClass(var titleImage:Int, var heading: String, var category: String, var detail: String, var time: String)
+data class TaskDataClass(var taskId:String="",
+                         var etNewTaskTitle:String="",
+                         var etNewTaskCategory:String="",
+                         var etNewTaskDetail: String="",
+                         var etNewTaskTime:String="" )

@@ -27,12 +27,16 @@
         <entry key="..\:/Users/asus/AndroidStudioProjects/ToDoListApp/app/src/main/res/layout/login_fragment.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/ToDoListApp/app/src/main/res/menu/bottom_menu.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/ToDoListApp/app/src/main/res/menu/home_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_delete.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_edit.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/fragment_task.xml" value="0.19610507246376813" />
-        <entry key="app/src/main/res/layout/item_todo.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/item_todo.xml" value="0.27257601972939316" />
       </map>
     </option>
   </component>

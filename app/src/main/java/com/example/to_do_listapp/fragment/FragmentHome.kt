@@ -1,28 +1,26 @@
 package com.example.to_do_listapp.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.to_do_listapp.R
 import com.example.to_do_listapp.TaskDataClass
 import com.example.to_do_listapp.adapter.RecyclerAdapter
 import com.example.to_do_listapp.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 
 
 class FragmentHome : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    var database = FirebaseDatabase.getInstance().reference
+    private lateinit var database : DatabaseReference
     private lateinit var auth: FirebaseAuth
+    val taskList = ArrayList<TaskDataClass>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,28 +29,19 @@ class FragmentHome : Fragment() {
     ): View? {
         auth = FirebaseAuth.getInstance()
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        binding.recyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        val taskList = ArrayList<TaskDataClass>()
-        var getData = object : ValueEventListener {
+        binding.recyclerView.layoutManager =LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+        var currentUser = auth.currentUser
+        database= FirebaseDatabase.getInstance().reference.child(currentUser?.uid!!).child("task")
+        database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                for (i in snapshot.children) {
-                    if(i.child("user").getValue().toString()==auth.currentUser?.uid.toString()){
-                        var etNewTaskTitle = i.child("etNewTaskTitle").getValue().toString()
-                        var etNewTaskCategory = i.child("etNewTaskCategory").getValue().toString()
-                        var etNewTaskDetail = i.child("etNewTaskDetail").getValue().toString()
-                        var etNewTaskTime = i.child("etNewTaskTime").getValue().toString()
-                        val task = TaskDataClass(
-                            R.drawable.ic_note,
-                            etNewTaskTitle,
-                            etNewTaskCategory,
-                            etNewTaskDetail,
-                            etNewTaskTime
-                        )
-                        taskList.add(task)
+                if (snapshot.exists()){
+                    taskList.clear()
+                    for (taskSnapshot in snapshot.children){
+                        val task = taskSnapshot.getValue(TaskDataClass::class.java)
+                        taskList.add(task!!)
                     }
                 }
-                //todo hata
                 val adapter = RecyclerAdapter(requireContext(), taskList)
                 binding.recyclerView.adapter = adapter
             }
@@ -61,8 +50,8 @@ class FragmentHome : Fragment() {
 
             }
 
-        }
-        database.addValueEventListener(getData)
+        })
+
         menuOnClick()
         return binding.root
     }

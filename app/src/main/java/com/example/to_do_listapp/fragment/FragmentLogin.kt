@@ -25,7 +25,6 @@ class FragmentLogin : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         auth = FirebaseAuth.getInstance()
 
@@ -51,8 +50,6 @@ class FragmentLogin : Fragment() {
                 Toast.makeText(requireContext(), exception.localizedMessage, Toast.LENGTH_LONG)
                     .show()
             }
-
-
         }
 
         binding.apply {

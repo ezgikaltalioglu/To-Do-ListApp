@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.to_do_listapp.R
-import com.example.to_do_listapp.TaskInfo
+import com.example.to_do_listapp.TaskDataClass
 import com.example.to_do_listapp.databinding.FragmentAddBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -30,16 +30,17 @@ class FragmentAdd : Fragment() {
         _binding = FragmentAddBinding.inflate(inflater, container, false)
 
         binding.apply {
-            buttonNewAddTask.setOnClickListener { findNavController().navigate(R.id.actionFragmentAdd_to_homeFragment)
+            buttonNewAddTask.setOnClickListener {
                 var database = FirebaseDatabase.getInstance().reference
-                var NewTaskTitle= binding.etNewTaskTitle.text.toString()
-                var NewTaskCategory= binding.etNewTaskCategory.text.toString()
-                var NewTaskDetail= binding.etNewTaskDetail.text.toString()
-                var NewTaskTime= binding.etNewTaskTime.text.toString()
+                var newTaskTitle= binding.etNewTaskTitle.text.toString()
+                var newTaskCategory= binding.etNewTaskCategory.text.toString()
+                var newTaskDetail= binding.etNewTaskDetail.text.toString()
+                var newTaskTime= binding.etNewTaskTime.text.toString()
                 var user = FirebaseAuth.getInstance().currentUser?.uid.toString()
+                var taskId = database.push().key.toString()
 
-
-                database.child(NewTaskTitle.toString()).setValue(TaskInfo(NewTaskTitle,NewTaskCategory,NewTaskDetail,NewTaskTime, user ))
+                database.child(user).child("task").child(taskId).setValue(TaskDataClass(newTaskTitle,newTaskCategory,newTaskDetail,newTaskTime))
+                findNavController().navigate(R.id.actionFragmentAdd_to_homeFragment)
             }
         }
 

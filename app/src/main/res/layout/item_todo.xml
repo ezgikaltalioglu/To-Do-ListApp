@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/cardView"
     android:layout_margin="5dp"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="12dp"
@@ -21,14 +20,13 @@
         android:id="@+id/toDoCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        tools:ignore="MissingConstraints"
-        android:layout_marginTop="28dp"
-        android:layout_marginLeft="8dp"
-        tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="1dp"
         android:buttonTint="@color/purple_200"
-        android:checked="true"
-        ></CheckBox>
+        android:checked="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"></CheckBox>
 
 
     <TextView
@@ -42,6 +40,24 @@
         android:textSize="30sp"
         app:layout_constraintLeft_toRightOf="@+id/toDoCheckBox"
         app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <ImageView
+        android:id="@+id/icon_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="2dp"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/icon_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_edit"
+        app:layout_constraintBottom_toTopOf="@+id/icon_delete"
+        app:layout_constraintStart_toStartOf="@+id/icon_delete" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

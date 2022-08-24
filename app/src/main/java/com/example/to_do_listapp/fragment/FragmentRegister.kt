@@ -1,6 +1,5 @@
 package com.example.to_do_listapp.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
@@ -12,17 +11,20 @@ import androidx.navigation.fragment.findNavController
 import com.example.to_do_listapp.R
 import com.example.to_do_listapp.databinding.FragmentRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
-
 import com.google.firebase.database.FirebaseDatabase
+
 
 class FragmentRegister : Fragment() {
     private lateinit var auth : FirebaseAuth
+    private lateinit var database: FirebaseDatabase
     private var _binding : FragmentRegisterBinding?= null
     private val binding get()=_binding!!
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         auth=FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance()
+
         _binding= FragmentRegisterBinding.inflate(inflater,container,false)
         _binding.apply {
             binding.buttonSave.setOnClickListener{
@@ -37,12 +39,15 @@ class FragmentRegister : Fragment() {
                 }
                 auth.createUserWithEmailAndPassword(etSaveUserName, etSavePassword).addOnCompleteListener{ task ->
                     if(task.isSuccessful){
-                        var currentUser = auth.currentUser
-                        Toast.makeText(requireContext(),"Kayıt Başarılı",Toast.LENGTH_LONG).show()
+
+                        val database = FirebaseDatabase.getInstance().reference.child(auth.uid.toString()).child("user_info").child("mail").setValue(etSaveUserName).addOnCompleteListener {
+                            Toast.makeText(context, "Kayıt Oluşturuldu", Toast.LENGTH_LONG).show()
+                        }
                     }
                 }.addOnFailureListener { exception ->
                     Toast.makeText(requireContext(),exception.localizedMessage,Toast.LENGTH_LONG).show()
                 }
+
             }
 
             binding.apply {
